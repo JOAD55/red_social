@@ -11,7 +11,6 @@ class usuario
     private $conexion;
     private $instruccion;
     private $resultado;
-    private $arreglo_resultado;
 
     public function __construct()
     {
@@ -20,15 +19,16 @@ class usuario
 
     public function guardar()
     {
-        $this->nombre = filter_var($this->nombre, FILTER_SANITIZE_ADD_STRING);
-        $this->correo = filter_var($this->correo, FILTER_SANITIZE_ADD_STRING);
+        if (!filter_var($this->correo, FILTER_VALIDATE_EMAIL)){
+            throw new InvalidArgumentException('Correo inválido');
+        }
 
         $cifrada = password_hash($this->contrasena, PASSWORD_DEFAULT);
-
         $this->instruccion = "INSERT INTO usuarios (nombre, correo, contrasena)
             VALUES ('$this->nombre', '$this->correo', '$cifrada')";
 
         $this->resultado = mysqli_query($this->conexion, $this->instruccion);
+        return $this->resultado;
     }
 }
 ?>
