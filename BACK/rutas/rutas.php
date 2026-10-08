@@ -8,7 +8,7 @@ header("Access-Control-Max-Age: 3600");
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $uri = explode("/", $uri);
 
-if ($uri[1] == "usuario") {
+if ($uri[5] == "usuario") {
     include_once "../controladores/usuarios.php";
 }
 ?>
