@@ -17,6 +17,8 @@ class usuario
         $this->conexion = Database::obtenerConexion();
     }
 
+    // -- VERIFICAR EL NOMBRE DE TU TABLA EN MYSQL --
+
     public function guardar()
     {
         if (!filter_var($this->correo, FILTER_VALIDATE_EMAIL)) {
@@ -42,6 +44,16 @@ class usuario
                                     correo = '$this->correo',
                                     contrasena = '$cifrada'
                                 WHERE id = $this->id";
+
+        $this->resultado = mysqli_query($this->conexion, $this->instruccion);
+        return $this->resultado;
+    }
+
+    public function buscar(int $usuarioId)
+    {
+        $this->instruccion = "SELECT *
+                                FROM usuarios
+                                WHERE id = $usuarioId";
 
         $this->resultado = mysqli_query($this->conexion, $this->instruccion);
         return $this->resultado;

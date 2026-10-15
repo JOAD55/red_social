@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^usuario$ /red_social/BACK/rutas/rutas.php [L]
+RewriteRule ^usuario/([0-9]+)$ /red_social/BACK/rutas/rutas.php?id=$1 [L,QSA]
