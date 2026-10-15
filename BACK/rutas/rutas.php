@@ -10,10 +10,11 @@ $uri = explode("/", $uri); // explode separa la url en partes como se muestra ab
 
 // $uri[posicion] se cambia de acuerdo con la url utilizada
 // http://localhost/red_social/BACK/rutas/rutas.ph/usuario
-//            0        1        2    3      4        5
+//            0    |    1    |  2 |  3  |   4    |   5
 // localhost/usuario
-//     0        1
+//     0   |    1
 if ($uri[1] == "usuario") {
+    // revisar el nombre del archivo que coincida
     include_once "../controladores/usuarios.php";
 }
 ?>

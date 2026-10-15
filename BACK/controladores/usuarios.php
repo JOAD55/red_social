@@ -1,13 +1,15 @@
 <?php
-require_once '../modelos/usuarios.php';
-
-$usuario = new Usuario();
-
-$request = $_SERVER["REQUEST_METHOD"];
-
 // el try - catch es para atrapar algun error al
 // momento de ejecutar una instruccion
 try {
+
+    // revisar el nombre del archivo que coincida
+    require_once '../modelos/usuarios.php';
+
+    $usuario = new Usuario();
+
+    $request = $_SERVER["REQUEST_METHOD"];
+
     switch ($request) {
         case 'GET':
             // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php

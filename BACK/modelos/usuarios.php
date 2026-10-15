@@ -1,4 +1,5 @@
 <?php
+// revisar el nombre del archivo que coincida
 include_once '../librerias/bd.php';
 
 class usuario
