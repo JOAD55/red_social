@@ -16,5 +16,7 @@ $uri = explode("/", $uri); // explode separa la url en partes como se muestra ab
 if ($uri[1] == "usuario") {
     // revisar el nombre del archivo que coincida
     include_once "../controladores/usuarios.php";
+} elseif ($uri[1] == "mensaje") {
+    include_once "../controladores/mensaje.php";
 }
 ?>
