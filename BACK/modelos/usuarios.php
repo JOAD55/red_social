@@ -59,5 +59,23 @@ class usuario
         $this->resultado = mysqli_query($this->conexion, $this->instruccion);
         return $this->resultado;
     }
+
+    public function listar()
+    {
+        $this->instruccion = "SELECT *
+                                FROM usuarios";
+
+        $this->resultado = mysqli_query($this->conexion, $this->instruccion);
+        return $this->resultado;
+    }
+
+    public function borrar(int $usuarioId)
+    {
+        $this->instruccion = "DELETE FROM usuarios
+                                WHERE id = $usuarioId";
+
+        $this->resultado = mysqli_query($this->conexion, $this->instruccion);
+        return $this->resultado;
+    }
 }
 ?>

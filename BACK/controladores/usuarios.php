@@ -13,18 +13,34 @@ try {
     switch ($request) {
         case 'GET':
             // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php
-            $usuarioId = $uri[2];
-            $datos = $usuario->buscar($usuarioId);
-            $resultado = mysqli_fetch_assoc($datos); // assoc separa los campos del objeto
-            $respuesta['datos'] = array(
-                "id" => $resultado['id'],
-                "nombre" => $resultado['nombre'],
-                "correo" => $resultado['correo'],
-                "contrasena" => $resultado['contrasena']
-            );
+            if ($uri[2] != null) {
+                $usuarioId = $uri[2];
+                $datos = $usuario->buscar($usuarioId);
+                $resultado = mysqli_fetch_assoc($datos); // assoc separa los campos del objeto
+                $respuesta['datos'] = array(
+                    "id" => $resultado['id'],
+                    "nombre" => $resultado['nombre'],
+                    "correo" => $resultado['correo'],
+                    "contrasena" => $resultado['contrasena']
+                );
 
-            http_response_code(200);
-            echo json_encode($respuesta);
+                http_response_code(200);
+                echo json_encode($respuesta);
+            } else {
+                $datos = $usuario->listar();
+                $respuesta = array("datos" => array());
+                while ($resultado = mysqli_fetch_assoc($datos)) {
+                    $respuesta['datos'][] = array(
+                        "id" => $resultado['id'],
+                        "nombre" => $resultado['nombre'],
+                        "correo" => $resultado['correo'],
+                        "contrasena" => $resultado['contrasena']
+                    );
+                }
+
+                http_response_code(200);
+                echo json_encode($respuesta);
+            }
             break;
         case 'POST':
             $datos = json_decode(file_get_contents("php://input"));
@@ -68,7 +84,12 @@ try {
             }
             break;
         case 'DELETE':
+            // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php
+            $usuarioId = $uri[2];
+            $resultado = $usuario->borrar($usuarioId);
 
+            http_response_code(200);
+            echo json_encode($resultado);
             break;
     }
 } catch (Throwable $error) {
