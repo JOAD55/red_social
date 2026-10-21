@@ -84,6 +84,11 @@ try {
             }
             break;
         case 'DELETE':
+            if ($uri[2] == null) {
+                http_response_code(400);
+                echo json_encode(["mensaje" => "el id es obligatorio"]);
+                break;
+            }
             // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php
             $usuarioId = $uri[2];
             $resultado = $usuario->borrar($usuarioId);

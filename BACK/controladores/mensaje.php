@@ -87,12 +87,17 @@ try {
             }
             break;
         case 'DELETE':
+            if ($uri[2] == null) {
+                http_response_code(400);
+                echo json_encode(["mensaje" => "el id es obligatorio"]);
+                break;
+            }
             // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php
             $mensajeId = $uri[2];
             $resultado = $mensaje->borrar($mensajeId);
 
             http_response_code(200);
-            echo json_encode($resultado);
+            echo json_encode(["mensaje" => "mensaje borrado exitosamente"]);
             break;
     }
 } catch (Throwable $error) {
