@@ -76,7 +76,9 @@ try {
 
             $mensaje->id = $datos->id;
             $mensaje->texto = trim($datos->texto);
-            // $mensaje->fecha_hora = trim($datos->fecha_hora);
+
+            // comentada para no tener que ingresar la fecha y hora manuealmente
+            // $mensaje->fecha_hora = trim($datos->fecha_hora); 
             $mensaje->remitente = trim($datos->remitente);
             $mensaje->destinatario = trim($datos->destinatario);
 
