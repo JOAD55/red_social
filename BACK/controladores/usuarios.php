@@ -94,7 +94,7 @@ try {
             $resultado = $usuario->borrar($usuarioId);
 
             http_response_code(200);
-            echo json_encode($resultado);
+            echo json_encode(["mensaje" => "Usuario borrado exitosamente"]);
             break;
     }
 } catch (Throwable $error) {
