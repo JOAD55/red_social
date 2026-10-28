@@ -40,7 +40,7 @@ class Mensaje
 
     public function actualizar()
     {
-        $this->instruccion = "UPDATE usuarios
+        $this->instruccion = "UPDATE mensaje
                                 SET texto = '$this->texto',
                                     remitente = '$this->remitente',
                                     destinatario = '$this->destinatario'
