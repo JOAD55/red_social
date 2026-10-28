@@ -47,7 +47,7 @@ try {
         case 'POST':
             $datos = json_decode(file_get_contents("php://input"));
 
-            if (empty($datos->texto) || empty($datos->remitente || empty($datos->destinatario))) {
+            if (empty($datos->texto) || empty($datos->remitente) || empty($datos->destinatario)) {
                 http_response_code(400);
                 echo json_encode(["mensaje" => "todos los campos son obligatorios"]);
                 break;
@@ -58,7 +58,7 @@ try {
             $mensaje->destinatario = trim($datos->destinatario);
 
             if ($mensaje->guardar()) {
-                http_response_code(200);
+                http_response_code(201);
                 echo json_encode(array("mensaje" => "Mensaje registrado con exito"));
             } else {
                 http_response_code(400);
@@ -103,7 +103,7 @@ try {
             break;
     }
 } catch (Throwable $error) {
-    http_response_code(400);
+    http_response_code(500);
     echo json_encode(["Error" => $error->getMessage()]);
 }
 ?>

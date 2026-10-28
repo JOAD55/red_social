@@ -2,9 +2,9 @@
 // revisar el nombre del archivo que coincida
 include_once '../librerias/bd.php';
 
-// configurar la zona horaria para el registro de mensajes (se puede descomentar)
+// configurar la zona horaria para el registro de mensajes
 // --------------------------------------------------
-// date_default_timezone_set("America/Mexico_City");
+date_default_timezone_set("America/Mexico_City");
 // --------------------------------------------------
 
 class Mensaje
@@ -29,7 +29,7 @@ class Mensaje
     public function guardar()
     {
         // Esto toma la fecha y hora actual para que no se requiera ingresarla
-        // Si se quiere usar la zona horaria actual se debe revisar la linea comentada hasta arriba
+        // Si se quiere configurar la zona horaria actual se debe revisar la linea de "date_default_timezone_set" ubicada hasta arriba
         $this->fecha_hora = date("Y-m-d H:i:s");
         $this->instruccion = "INSERT INTO mensaje (texto, fecha_hora, remitente, destinatario)
             VALUES ('$this->texto', '$this->fecha_hora', '$this->remitente', '$this->destinatario')";

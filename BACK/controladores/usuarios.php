@@ -56,7 +56,7 @@ try {
             $usuario->contrasena = trim($datos->contrasena);
 
             if ($usuario->guardar()) {
-                http_response_code(200);
+                http_response_code(201);
                 echo json_encode(array("mensaje" => "Usuario registrado con exito"));
             } else {
                 http_response_code(400);
@@ -98,7 +98,7 @@ try {
             break;
     }
 } catch (Throwable $error) {
-    http_response_code(400);
+    http_response_code(500);
     echo json_encode(["Error" => $error->getMessage()]);
 }
 ?>
