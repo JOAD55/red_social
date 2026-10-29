@@ -20,19 +20,24 @@ input {
     font-size: 1rem;
     border-radius: 25px;
     padding: 0.1rem 1rem;
-    
+    border: 2px solid white;
+}
+
+input:hover {
+    color: black;
+    background-color: white;
 }
 
 .navegacion {
     border-radius: 25px;
     color: rgb(1, 1, 1);
     padding: 0.1rem 1rem;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 198, 253);
     text-decoration: none;
 }
 
 .navegacion:hover {
-    color: white;
+    color: rgb(0, 198, 253);
     background-color: rgb(0, 0, 0);
-    border: 2px solid white;
+    border: 2px solid rgb(0, 198, 253);
 }
