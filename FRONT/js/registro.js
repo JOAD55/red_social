@@ -12,12 +12,12 @@ function registro() {
     const opciones = {
         method: 'POST',
         headers: {
-            'Contetn-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(usuario)
     }
 
-    fetch("http:localhost:81/usuario", opciones)
+    fetch("http://localhost:81/usuario", opciones)
         .then(data => {
             if (data.ok) {
                 alert("Usuario Registrado");
