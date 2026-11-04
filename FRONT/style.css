@@ -1,50 +1,101 @@
 :root {
-    /* variables de colores, se pueden modificar */
-    --primary-color: white;
-    --secondary-color: black;
-    --terciary-color: rgb(0, 198, 253);
-}
-
-html {
-    font-size: 25px;
-}
-
-body {
-    font-size: 1rem;
+    --bg: #FBFBFA;
+    --surface: #FFFFFF;
+    --text: #111111;
+    --muted: #787774;
+    --border: #EAEAEA;
+    --accent: #111111;
 }
 
 * {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 2rem;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', 'Geist Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
 }
 
-input {
-    font-size: 1rem;
-    border-radius: 25px;
-    padding: 0.1rem 1rem;
-    border: 2px solid var(--primary-color);
+main {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
 }
 
-input:hover {
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
+h1 {
+    margin: 0 0 32px;
+    font-family: 'Newsreader', 'Instrument Serif', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+input:not(.button) {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:not(.button):focus {
+    border-color: var(--text);
+}
+
+.button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px 12px;
+    font: inherit;
+    color: #FFFFFF;
+    background: var(--accent);
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.button:hover {
+    background: #333333;
+}
+
+.button:active {
+    transform: scale(0.98);
 }
 
 .navegacion {
-    border-radius: 25px;
-    color: var(--secondary-color);
-    padding: 0.1rem 1rem;
-    background-color: var(--terciary-color);
+    display: block;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--muted);
     text-decoration: none;
 }
 
 .navegacion:hover {
-    color: var(--terciary-color);
-    background-color: var(--secondary-color);
-    border: 2px solid var(--terciary-color);
+    color: var(--text);
 }
