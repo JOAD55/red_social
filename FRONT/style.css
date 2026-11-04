@@ -1,10 +1,19 @@
 :root {
-    --bg: #FBFBFA;
+    /*  Paleta de colores claros */
+    /* --bg: #FBFBFA;
     --surface: #FFFFFF;
     --text: #111111;
     --muted: #787774;
     --border: #EAEAEA;
-    --accent: #111111;
+    --accent: #111111; */
+    
+    /*  Paleta de colores obscuros */
+    --bg: #0F0F0F;
+    --surface: #181818;
+    --text: #EDEDED;
+    --muted: #9E9E9E;
+    --border: #2A2A2A;
+    --accent: #5b5b5b;
 }
 
 * {
