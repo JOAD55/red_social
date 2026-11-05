@@ -31,9 +31,4 @@ function registro() {
     } catch (error) {
         alert(error);
     }
-
 }
-
-var btnGuardar = document.getElementById("btnGuardar");
-
-btnGuardar.addEventListener("click", registro);
