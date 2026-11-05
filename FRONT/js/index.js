@@ -4,28 +4,27 @@ var txtContrasena = document.getElementById("txtContrasena");
 function consultar() {
     try {
         const usuario = {
-            correo: txtCorreo.value,
-            contrasena: txtContrasena.value
+            correo: txtCorreo.value
         }
 
         const opciones = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(usuario)
         }
 
-        fetch("http://localhost:81/usuario", opciones)
+        fetch("http://localhost:81/usuario/correo", opciones)
             .then(data => {
                 if (data.ok) {
-                    alert("Usuario Registrado");
+                    alert("Usuario Encontrado");
                 }
                 else {
-                    alert("Error al registrar usuario");
+                    alert("Usuario no encontrado");
                 }
             })
-            .catch(() => alert("No se pudo conectar con el servidor"));
+            .catch(e => alert(e));
     } catch (error) {
         alert(error);
     }

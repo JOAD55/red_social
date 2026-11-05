@@ -14,49 +14,25 @@ try {
         case 'GET':
             // revisar el numero de $uri[] como ejemplo en el archivo /rutas/rutas.php
             if ($uri[2] != null) {
-                if ($uri[2] == "correo") {
-                    $datos = json_decode(file_get_contents("php://input"));
-                    $usuario->correo = trim($datos->correo);
 
-                    $datos = $usuario->buscarCorreo($usuario->correo);
+                $usuarioId = $uri[2];
+                $datos = $usuario->buscar($usuarioId);
+                $resultado = mysqli_fetch_assoc($datos); // assoc separa los campos del objeto
+                $respuesta['datos'] = array(
+                    "id" => $resultado['id'],
+                    "nombre" => $resultado['nombre'],
+                    "correo" => $resultado['correo'],
+                    "contrasena" => $resultado['contrasena']
+                );
 
-                    $resultado = mysqli_fetch_assoc($datos);
-                    $respuesta['datos'] = array(
-                        "id" => $resultado['id'],
-                        "nombre" => $resultado['nombre'],
-                        "correo" => $resultado['correo'],
-                        "contrasena" => $resultado['contrasena']
-                    );
-
-                    if ($respuesta['datos']['id'] == null) {
-                        http_response_code(404);
-                        echo json_encode(["mensaje" => "Usuario no encontrado"]);
-                        return;
-                    }
-
-                    http_response_code(200);
-                    echo json_encode($respuesta);
-                } else {
-                    $usuarioId = $uri[2];
-                    $datos = $usuario->buscar($usuarioId);
-                    $resultado = mysqli_fetch_assoc($datos); // assoc separa los campos del objeto
-                    $respuesta['datos'] = array(
-                        "id" => $resultado['id'],
-                        "nombre" => $resultado['nombre'],
-                        "correo" => $resultado['correo'],
-                        "contrasena" => $resultado['contrasena']
-                    );
-
-                    if ($respuesta['datos']['id'] == null) {
-                        http_response_code(404);
-                        echo json_encode(["mensaje" => "Usuario no encontrado"]);
-                        return;
-                    }
-
-                    http_response_code(200);
-                    echo json_encode($respuesta);
-
+                if ($respuesta['datos']['id'] == null) {
+                    http_response_code(404);
+                    echo json_encode(["mensaje" => "Usuario no encontrado"]);
+                    return;
                 }
+
+                http_response_code(200);
+                echo json_encode($respuesta);
             } else {
                 $datos = $usuario->listar();
                 $respuesta = array("datos" => array());
@@ -74,6 +50,31 @@ try {
             }
             break;
         case 'POST':
+            if ($uri[2] == "correo") {
+                $datos = json_decode(file_get_contents("php://input"));
+                $usuario->correo = trim($datos->correo);
+
+                $datos = $usuario->buscarCorreo($usuario->correo);
+
+                $resultado = mysqli_fetch_assoc($datos);
+                $respuesta['datos'] = array(
+                    "id" => $resultado['id'],
+                    "nombre" => $resultado['nombre'],
+                    "correo" => $resultado['correo'],
+                    "contrasena" => $resultado['contrasena']
+                );
+
+                if ($respuesta['datos']['id'] == null) {
+                    http_response_code(404);
+                    echo json_encode(["mensaje" => "Usuario no encontrado"]);
+                    break;
+                }
+
+                http_response_code(200);
+                echo json_encode($respuesta);
+                break;
+            }
+
             $datos = json_decode(file_get_contents("php://input"));
 
             if (empty($datos->nombre) || empty($datos->correo) || empty($datos->contrasena)) {
