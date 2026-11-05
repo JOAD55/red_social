@@ -60,6 +60,16 @@ class usuario
         return $this->resultado;
     }
 
+    public function buscarCorreo(string $correo)
+    {
+        $this->instruccion = "SELECT *
+                                FROM usuarios
+                                WHERE correo = '$correo'";
+
+        $this->resultado = mysqli_query($this->conexion, $this->instruccion);
+        return $this->resultado;
+    }
+
     public function listar()
     {
         $this->instruccion = "SELECT *
