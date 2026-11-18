@@ -4,7 +4,8 @@ var txtContrasena = document.getElementById("txtContrasena");
 function consultar() {
     try {
         const usuario = {
-            correo: txtCorreo.value
+            correo: txtCorreo.value,
+            contrasena: txtContrasena.value
         }
 
         const opciones = {
@@ -20,8 +21,11 @@ function consultar() {
                 if (data.ok) {
                     alert("Usuario Encontrado");
                 }
-                else {
-                    alert("Usuario no encontrado");
+                else if (data.status == 404) {
+                    alert("Correo no existe");
+                }
+                else if (data.status == 401) {
+                    alert("Contraseña incorrecta")
                 }
             })
             .catch(e => alert(e));
