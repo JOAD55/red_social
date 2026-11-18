@@ -53,26 +53,32 @@ try {
             if ($uri[2] == "correo") {
                 $datos = json_decode(file_get_contents("php://input"));
                 $usuario->correo = trim($datos->correo);
+                $usuario->contrasena = trim($datos->contrasena);
 
                 $datos = $usuario->buscarCorreo($usuario->correo);
 
                 $resultado = mysqli_fetch_assoc($datos);
-                $respuesta['datos'] = array(
-                    "id" => $resultado['id'],
-                    "nombre" => $resultado['nombre'],
-                    "correo" => $resultado['correo'],
-                    "contrasena" => $resultado['contrasena']
-                );
-
-                if ($respuesta['datos']['id'] == null) {
+                if ($resultado != null) {
+                    if (password_verify($usuario->contrasena, $resultado["contrasena"])) {
+                        $respuesta['usuario'] = array(
+                            "id" => $resultado['id'],
+                            "nombre" => $resultado['nombre'],
+                            "correo" => $resultado['correo'],
+                            "contrasena" => $resultado['contrasena']
+                        );
+                        http_response_code(200);
+                        echo json_encode($respuesta);
+                        break;
+                    } else {
+                        http_response_code(401);
+                        echo json_encode(["mensaje" => "Usuario o contraseña incorrectos"]);
+                        break;
+                    }
+                } else {
                     http_response_code(404);
                     echo json_encode(["mensaje" => "Usuario no encontrado"]);
                     break;
                 }
-
-                http_response_code(200);
-                echo json_encode($respuesta);
-                break;
             }
 
             $datos = json_decode(file_get_contents("php://input"));
