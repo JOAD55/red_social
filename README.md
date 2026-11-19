@@ -24,10 +24,12 @@ red_social/
 ├── FRONT/
 │   ├── index.html            # Inicio de sesión (consulta usuario por correo)
 │   ├── registro.html         # Registro de nuevo usuario
+│   ├── principal.html        # Pagina principal (inicio de sesion exitoso)
 │   ├── style.css             # Estilos
 │   └── js/
 │       ├── index.js          # Lógica de inicio de sesión
-│       └── registro.js       # Lógica de registro
+│       ├── registro.js       # Lógica de registro
+│       └── principal.js      # Lógica de pagina principal
 ├── SQL/DBHeidi.sql           # Creación de la BD y las tablas
 └── plantilla.htaccess        # Reglas de reescritura de URL
 ```
@@ -93,8 +95,9 @@ Respuesta: `{"mensaje":"Usuario registrado con exito"}`
 
 El frontend (carpeta `FRONT/`) es HTML/CSS/JS vanilla y no requiere compilación:
 
-- `index.html`: formulario de inicio de sesión. Al hacer clic en "Ingresar" envía `POST /usuario/correo` con el correo y avisa si el usuario existe.
+- `index.html`: formulario de inicio de sesión. Al hacer clic en "Ingresar" envía `POST /usuario/correo` con el correo y contraseña, avisa si el usuario existe y es valido ademas de guardar el correo durante la sesion.
 - `registro.html`: formulario de registro. Envía `POST /usuario` con `nombre`, `correo` y `contrasena`.
+- `principal.html`: pagina principal con seccion para enviar mensajes, se debe colocar el destinatario y mensaje, el correo del remitente lo obtiene del guardado durante el inicio de sesion
 - `FRONT/js/index.js` y `FRONT/js/registro.js` apuntan a `http://localhost:81`; cámbialos si tu MAMP corre en otro puerto.
 
 ## Notas
