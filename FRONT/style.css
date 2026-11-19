@@ -6,7 +6,7 @@
     --muted: #787774;
     --border: #EAEAEA;
     --accent: #111111; */
-    
+
     /*  Paleta de colores obscuros */
     --bg: #0F0F0F;
     --surface: #181818;
@@ -107,4 +107,26 @@ input:not(.button):focus {
 
 .navegacion:hover {
     color: var(--text);
+}
+
+td {
+    padding: 12px;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#principal {
+    max-width: 80dvw;
 }

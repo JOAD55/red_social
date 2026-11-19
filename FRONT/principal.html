@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Pagina Principal</title>
+    </head>
+    <body>
+        <main id="principal">
+            <table width="100%">
+                <tr>
+                    <td width="25%">
+                        Mensajes
+                        <br />
+                        Fotos
+                    </td>
+                    <td width="75%">
+                        Mensajes
+                        <br />
+                        Para:
+                        <input type="email" id="txtEmail" />
+                        <br />
+                        Mensaje:
+                        <textarea name="txtMensaje" id="txtMensaje"></textarea>
+                        <br />
+                        <input type="button" value="Enviar" class="button" onclick="enviarMensaje()"/>
+                    </td>
+                </tr>
+            </table>
+        </main>
+        <script src="js/principal.js"></script>
+    </body>
+</html>
