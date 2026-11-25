@@ -52,12 +52,12 @@ function leerMensajes() {
         mensaje +=
           "Remitente: " +
           data.datos[i].remitente +
-          "  |  Destinatario: " +
+          "<br>Destinatario: " +
           data.datos[i].destinatario +
-          "  |  Mensaje: " +
-          data.datos[i].texto +
-          "  |  Fecha y Hora: " +
+          "<br>Fecha y Hora: " +
           data.datos[i].fecha_hora +
+          "<br>Mensaje: " +
+          data.datos[i].texto +
           "<br><br>";
       }
       document.getElementById("mensajes").innerHTML = mensaje;
