@@ -67,3 +67,7 @@ function leerMensajes() {
       console.log(error);
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  leerMensajes();
+});
