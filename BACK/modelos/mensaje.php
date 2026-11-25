@@ -18,14 +18,14 @@ class Mensaje
     private $conexion;
     private $instruccion;
     private $resultado;
-    
+
     public function __construct()
     {
         $this->conexion = Database::obtenerConexion();
         }
-        
+
         // -- VERIFICAR EL NOMBRE DE TU TABLA EN MYSQL --
-        
+
     public function guardar()
     {
         // Esto toma la fecha y hora actual para que no se requiera ingresarla
@@ -63,7 +63,8 @@ class Mensaje
     public function listar()
     {
         $this->instruccion = "SELECT *
-                                FROM mensaje";
+                                FROM mensaje
+                                ORDER BY fecha_hora DESC";
 
         $this->resultado = mysqli_query($this->conexion, $this->instruccion);
         return $this->resultado;
