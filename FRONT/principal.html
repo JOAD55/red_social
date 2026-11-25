@@ -24,12 +24,19 @@
                         Mensaje:
                         <textarea name="txtMensaje" id="txtMensaje"></textarea>
                         <br />
-                        <input type="button" value="Enviar" class="button" onclick="enviarMensaje()"/>
+                        <input
+                            type="button"
+                            value="Enviar"
+                            class="button"
+                            onclick="enviarMensaje()"
+                        />
                     </td>
                 </tr>
             </table>
-            <button onclick="listarMensajes()" id="reloadMessages">Listar Mensajes</button>
-           <textarea name="txtListaMensajes" id="txtListaMensajes" disabled></textarea>
+            <button onclick="leerMensajes()" id="btnReloadMessages">
+                Listar Mensajes
+            </button>
+            <div id="mensajes"></div>
         </main>
         <script src="js/principal.js"></script>
     </body>

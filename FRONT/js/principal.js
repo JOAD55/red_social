@@ -25,6 +25,7 @@ function enviarMensaje() {
           alert("Mensaje enviado");
           txtEmail.value = null;
           txtMensaje.value = null;
+          leerMensajes();
         } else {
           alert("Error al enviar mensaje");
         }
@@ -35,34 +36,34 @@ function enviarMensaje() {
   }
 }
 
-let listaMensajes = [];
-
-async function listarMensajes() {
-  try {
-    const opciones = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+function leerMensajes() {
+  fetch("http://localhost:81/mensaje", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (datos) {
+      return datos.json();
+    })
+    .then(function (data) {
+      let mensaje = "";
+      for (i = 0; i < data.datos.length; i++) {
+        mensaje +=
+          "Remitente: " +
+          data.datos[i].remitente +
+          "  |  Destinatario: " +
+          data.datos[i].destinatario +
+          "  |  Mensaje: " +
+          data.datos[i].texto +
+          "  |  Fecha y Hora: " +
+          data.datos[i].fecha_hora +
+          "<br><br>";
       }
-    };
-
-    const response = await fetch("http://localhost:81/mensaje", opciones);
-
-    if (response.ok) {
-      const resultado = await response.json();
-      listaMensajes = resultado.datos;
-
-      let textoMensajes = "";
-
-      listaMensajes.forEach((m) => {
-        textoMensajes += "Remitente: " + m.remitente + "  |  Destinatario: " + m.destinatario + "  |  Mensaje: " + m.texto + "\n";
-      });
-
-      txtListaMensajes.value = textoMensajes;
-    } else {
-      alert("Error al listar mensajes");
-    }
-  } catch (error) {
-    alert("No se pudo conectar con el servidor: " + error.message);
-  }
+      document.getElementById("mensajes").innerHTML = mensaje;
+    })
+    .catch(function (error) {
+      alert("Ocurrio un error al leer mensajes");
+      console.log(error);
+    });
 }
