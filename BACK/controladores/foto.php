@@ -47,9 +47,9 @@ try {
             $datos = json_decode(file_get_contents("php://input"));
 
             if (
-                empty($datos->texto) ||
-                empty($datos->remitente) ||
-                empty($datos->destinatario)
+                empty($datos->correo) ||
+                empty($datos->foto) ||
+                empty($datos->descripcion)
             ) {
                 http_response_code(400);
                 echo json_encode([
@@ -75,9 +75,9 @@ try {
 
             if (
                 empty($datos->id) ||
-                empty($datos->texto) ||
-                empty($datos->remitente) ||
-                empty($datos->destinatario)
+                empty($datos->correo) ||
+                empty($datos->foto) ||
+                empty($datos->descripcion)
             ) {
                 http_response_code(400);
                 echo json_encode([
