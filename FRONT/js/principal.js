@@ -1,10 +1,10 @@
 var txtEmail = document.getElementById("txtEmail");
 var txtMensaje = document.getElementById("txtMensaje");
 var txtListaMensajes = document.getElementById("txtListaMensajes");
+const usuarioEmail = sessionStorage.getItem("usuarioEmail");
 
 function enviarMensaje() {
   try {
-    const usuarioEmail = sessionStorage.getItem("usuarioEmail");
     const mensaje = {
       texto: txtMensaje.value,
       destinatario: txtEmail.value,
@@ -51,13 +51,15 @@ function leerMensajes() {
       for (i = 0; i < data.datos.length; i++) {
         mensaje +=
           "Remitente: " +
-          data.datos[i].remitente +
+          `<span>${data.datos[i].remitente}</span>` +
           "<br>Destinatario: " +
-          data.datos[i].destinatario +
+          `<span>${data.datos[i].destinatario}</span>` +
           "<br>Fecha y Hora: " +
           data.datos[i].fecha_hora +
           "<br>Mensaje: " +
+          '<div class="mensaje">' +
           data.datos[i].texto +
+          "</div>" +
           "<br><br>";
       }
       document.getElementById("mensajes").innerHTML = mensaje;
@@ -70,4 +72,5 @@ function leerMensajes() {
 
 document.addEventListener("DOMContentLoaded", function () {
   leerMensajes();
+  document.getElementById("lblBienvenido").innerHTML = `Sesión actual: ${usuarioEmail}`;
 });
