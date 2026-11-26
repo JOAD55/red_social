@@ -9,7 +9,7 @@ header("Access-Control-Max-Age: 3600");
 // el navegador manda OPTIONS antes del POST en JSON, sin esto bloquea la peticion
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(204);
-    exit;
+    exit();
 }
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // obtiene la url que se escribio en yaak
@@ -25,5 +25,7 @@ if ($uri[1] == "usuario") {
     include_once "../controladores/usuarios.php";
 } elseif ($uri[1] == "mensaje") {
     include_once "../controladores/mensaje.php";
+} elseif ($uri[1] == "foto") {
+    include_once "../controladores/foto.php";
 }
 ?>
