@@ -170,3 +170,7 @@ textarea {
 #mensajes span {
     text-decoration: underline;
 }
+
+#formFotos {
+    max-width: 50dvw;
+}
